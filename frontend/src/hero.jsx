@@ -1,14 +1,38 @@
-
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Slider from "react-slick";
+import 'nouislider/distribute/nouislider.css';
 import Map from "./map";
+import pollution1 from './a.jpeg';
+import water1 from './b.jpeg';
+import air1 from './c.jpeg';
+import pollution2 from './d.jpeg';
 
+const images = [pollution1, water1, air1, pollution2];
 const Hero = () => {
   
+
+  const sliderSettings = {
+    dots: true,        
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    arrows: true,
+    pauseOnHover: false,
+    fade: true,
+    cssEase: 'linear',
+  };
+
+
       
 
   return (
     <div className="bg-neutral-900 text-white">
      
-      <main className="flex flex-col lg:flex-row items-center justify-between p-12">
+      <main id = "home" className="flex flex-col lg:flex-row items-center justify-between p-12">
         <div className="text-center lg:text-left lg:w-1/2">
           <h2 className="text-5xl font-bold mb-4">Air & Water Quality Intelligence </h2>
           <p className="mb-6">Stay effortlessly informed about the air you breathe and the water you use.</p>
@@ -18,7 +42,19 @@ const Hero = () => {
             </div>
           </div>
         </div>
-
+        <div className="environment-slider lg:w-1/3 mt-8 lg:mt-0">
+      <Slider {...sliderSettings}>
+        {images.map((img, index) => (
+          <div key={index}>
+            <img
+              src={img}
+              alt={`Environment image ${index + 1}`}
+              className="rounded-lg w-full h-auto"
+            />
+          </div>
+        ))}
+      </Slider>
+    </div>
         
       </main>
 
@@ -55,30 +91,26 @@ const Hero = () => {
               <div className="relative z-10">
                 <h3 className="text-2xl font-bold mb-6">Quick Pollution Search</h3>
                 <form className="space-y-6">
-                  <div>
-                    <label className="block mb-2 text-sm">Your Location</label>
-                    <div className="flex gap-4">
-                      <input type="text" placeholder="Your location" className="flex-1 px-4 py-3 rounded-lg bg-neutral-700 focus:ring-2 focus:ring-[#FFB302] outline-none" />
-                      <button type="button" className="bg-neutral-700 p-3 rounded-lg">
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                      </button>
+                    <div>
+                      <label className="block mb-2 text-sm">Your Location</label>
+                      <div className="flex gap-4">
+                        <button type="button" className="bg-neutral-700 p-3 rounded-lg">
+                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
+                        </button>
+
+                        <button 
+                          type="button"
+                          className="bg-[#FFB302] text-neutral-900 px-40 py-3 rounded-lg font-bold hover:bg-[#FFB302]/90 transition-colors"
+                        >
+                          Track Pollution
+                        </button>
+                      </div>
                     </div>
-                  </div>
+                  </form>
 
-                 
-                  
-                      <button 
-                      type="button"
-                        
-                        className="w-full bg-[#FFB302] text-neutral-900 py-4 rounded-full font-bold hover:bg-[#FFB302]/90 transition-colors"
-                      >
-                        Track Pollution
-                      </button>
-
-                </form>
               </div>
             </div>
           </div>

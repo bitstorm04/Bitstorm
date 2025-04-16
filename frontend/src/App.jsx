@@ -1,6 +1,7 @@
 import Landingpage from "./landingpage";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from "react-toastify";
+import Chatbot from "./Chatbot";
 
 
 const App = () => {
@@ -13,7 +14,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Landingpage />} />
         </Routes>
-
+        <Chatbot/>
         <ToastContainer />
       </Router>
     </div>
