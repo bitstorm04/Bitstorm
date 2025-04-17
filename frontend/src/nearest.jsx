@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const PollutionSearch = () => {
-  const [city, setCity] = useState(""); 
+  
   const [nearestLocation, setNearestLocation] = useState(null); 
   const [pollutionData, setPollutionData] = useState(null); 
 
@@ -73,30 +73,17 @@ const PollutionSearch = () => {
             <div>
               <label className="block mb-2 text-sm">Your Location</label>
               <div className="flex gap-4">
-                <input
-                  type="text"
-                  placeholder="Enter city or region"
-                  className="flex-1 px-4 py-3 rounded-lg bg-neutral-700 focus:ring-2 focus:ring-[#FFB302] outline-none"
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)} 
-                />
-                <button
-                  type="button"
-                  onClick={getCurrentLocation} 
-                  className="bg-neutral-700 p-3 rounded-lg"
-                >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                </button>
               </div>
             </div>
 
             <button
               type="button"
               onClick={getCurrentLocation} 
-              className="w-full bg-[#FFB302] text-neutral-900 py-4 rounded-full font-bold hover:bg-[#FFB302]/90 transition-colors"
+              className="w-full bg-[#FFB302] text-neutral-900 py-4 rounded-full font-bold hover:bg-[#FFB302]/90 transition-colors cursor-pointer"
             >
               Track Pollution
             </button>
