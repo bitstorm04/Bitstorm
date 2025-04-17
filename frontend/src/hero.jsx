@@ -7,10 +7,10 @@ import pollution1 from './a.jpeg';
 import water1 from './b.jpeg';
 import air1 from './c.jpeg';
 import pollution2 from './d.jpeg';
-
+import { useNavigate } from 'react-router-dom';
 const images = [pollution1, water1, air1, pollution2];
 const Hero = () => {
-  
+  const navigate = useNavigate();
 
   const sliderSettings = {
     dots: true,        
@@ -26,7 +26,25 @@ const Hero = () => {
     cssEase: 'linear',
   };
 
+  const handleTrackPollution = async () => {
+    if (!navigator.geolocation) {
+      alert("Geolocation is not supported by your browser.");
+      return;
+    }
+  
+    navigator.geolocation.getCurrentPosition(async (position) => {
+      const { latitude, longitude } = position.coords;
+  
+      // Call backend API to get nearest location
+      const res = await fetch(`http://localhost:3000/api/nearest-location?lat=${latitude}&lng=${longitude}`);
+      const data = await res.json(); 
+      const { latitude: lat, longitude: lng } = data;
 
+        navigate('/result', {
+        state: { latitude: lat, longitude: lng },
+      });
+    });
+  };
       
 
   return (
@@ -103,7 +121,11 @@ const Hero = () => {
 
                         <button 
                           type="button"
-                          className="bg-[#FFB302] text-neutral-900 px-40 py-3 rounded-lg font-bold hover:bg-[#FFB302]/90 transition-colors"
+                          onClick={() => {
+                            handleTrackPollution();  
+                           
+                          }}
+                          className="bg-[#FFB302] text-neutral-900 px-40 py-3 rounded-lg font-bold hover:bg-[#FFB302]/90 transition-colors cursor-pointer"
                         >
                           Track Pollution
                         </button>
